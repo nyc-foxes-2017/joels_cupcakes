@@ -3,8 +3,8 @@ class Movie < ApplicationRecord
   has_many :comments, as: :commentable
 
   validates :title, presence: true
-  validates :year, presence: true
-  validates :genre, presence: true
-  validates :director, presence: true
-  validates :cast, presence: true
+
+  def self.search(search)
+    where("title ILIKE ?",  "%#{search}%")
+  end
 end
