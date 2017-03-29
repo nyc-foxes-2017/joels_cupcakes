@@ -5,6 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-users = User.create!([{email: "test@test.com", username: "Test" , password:"password"}])
-movies = Movie.create!([{title: "test" ,year: 1999, genre: "horror", director: "george lucas" , cast: "mark hamill" }])
+Movie.destroy_all
+url = "http://www.omdbapi.com/?t="
+movies = ["star wars", "jumanji", "logan", "power rangers", "good will hunting", "the lion king"]
+movies.each do |movie|
+  adjusted_string = movie.split(" ").join("+")
+  movie = JSON.parse open(url + adjusted_string).read
+  Movie.create!( { title: movie["Title"] } )
+end
+# users = User.create!([{email: "test@test.com", username: "Test" , password:"password"}])
+
 
