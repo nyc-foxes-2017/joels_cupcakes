@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <header>
+      <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag("Search")%>
+      <%end%>
+    </header>
     <%= yield %>
   </body>
 </html>
