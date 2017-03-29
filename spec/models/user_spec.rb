@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before(:each) do
-  @user = User.create!(username:"nancy",email:"nancy@email.com", password:"password")
-  @movie = Movie.create!(title:"The Fox and the Hound", year:1981, genre:"kids", cast:" Kurt Russell, Mickey Rooney", director:" Richard Rich, Ted Berman, Art Stevens")
-  @review = @user.reviews.create!(content:"So good",ratings:10,movie_id:@movie.id)
+  let(:user) = User.new{(username:"nancy",email:"nancy@email.com", password:"password")}
+  let(:movie) = Movie.new(title:"The Fox and the Hound", year:1981, genre:"kids", cast:" Kurt Russell, Mickey Rooney", director:" Richard Rich, Ted Berman, Art Stevens")
+  let(:reviews) = user.reviews.create!(content:"So good",ratings:10,movie_id:movie.id)
+  # before(:each) do
+  # @user = User.create!(username:"nancy",email:"nancy@email.com", password:"password")
+  # @movie = Movie.create!(title:"The Fox and the Hound", year:1981, genre:"kids", cast:" Kurt Russell, Mickey Rooney", director:" Richard Rich, Ted Berman, Art Stevens")
+  # @review = @user.reviews.create!(content:"So good",ratings:10,movie_id:@movie.id)
   # @comment = @user.comments.create!(content:"You're wrong!",commentable_type:"Movie")
-  end
+  # end
   describe 'associations' do
 
       it 'returns the reviews it has left ' do
