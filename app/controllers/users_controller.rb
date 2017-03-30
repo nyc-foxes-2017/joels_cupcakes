@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
+
+
   def index
     @users = User.all
   end
 
   def show
-    find_user
+    if find_user
+      find_user
+    else
+      redirect_to root_path
+    end
+
   end
+
+
 
   def new
     @user = User.new
@@ -47,6 +56,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 end
