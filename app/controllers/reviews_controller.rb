@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def new
+    @movie = Movie.find(params[:id])
     @review = Review.new
   end
 
@@ -17,10 +18,12 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
 
+    @movie = Movie.find(params[:movie_id])
+    # byebug
+    @review = @movie.reviews.new(review_params.merge(user_id: current_user.id))
     if @review.save
-      redirect_to @review
+      redirect_to @movie
     else
       render 'new'
     end
@@ -46,7 +49,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content, :ratings, :user, :movie)
+    params.require(:review).permit(:content, :ratings, :user_id => current_user.id, :movie_id => @movie.id)
   end
 
   def find_review

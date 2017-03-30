@@ -1,11 +1,9 @@
 class MoviesController < ApplicationController
 
   def index
-
     @movies = Movie.all.sample(4)
     @most_recent = Movie.order("created_at DESC").limit(5)
     @mr_c_movie = Movie.find_by(title: "The Princess Diaries")
-
   end
 
   def show
@@ -45,13 +43,13 @@ class MoviesController < ApplicationController
 
   def favorite
     movie = Movie.find(params[:id])
-    current_user.favorites.include?(movie) ? current_user.favorites.delete(movie) : current_user.favorites << movie 
+    current_user.favorites.include?(movie) ? current_user.favorites.delete(movie) : current_user.favorites << movie
     redirect_to movie_path(movie)
   end
 
   def watchlist
     movie = Movie.find(params[:id])
-    current_user.movies_to_watch.include?(movie) ? current_user.movies_to_watch.delete(movie) : current_user.movies_to_watch << movie 
+    current_user.movies_to_watch.include?(movie) ? current_user.movies_to_watch.delete(movie) : current_user.movies_to_watch << movie
     redirect_to movie_path(movie)
   end
 
