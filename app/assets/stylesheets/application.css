@@ -53,7 +53,8 @@ footer {
 
 .movie-container {
   padding-top: 10;
-  background-color: #242628;
+  background-color: #F0F8FF;
+  border: solid 1px gray;
   margin-left: 320px;
   margin-right: 380px
 
