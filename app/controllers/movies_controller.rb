@@ -19,7 +19,6 @@ class MoviesController < ApplicationController
         movie = JSON.parse open("http://www.omdbapi.com/?t=" + string).read
         @movie = Movie.create!( { title: movie["Title"]} )
         @movies = Movie.search(params[:search]).order("created_at DESC")
-        byebug
       end
     else
       @movies = Movie.all.order("created_at DESC")
