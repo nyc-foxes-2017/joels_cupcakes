@@ -11,11 +11,11 @@
 <br>
 <table>
   <%if user_signed_in?%>
-    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite" %></tr>
+    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite", class: "btn" %></tr>
     <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), action: "watchlist" %></tr>
   <% elsif %>
-    <tr><%= button_to "Add to Favorites", new_user_session_path %></tr>
-    <tr><%= button_to "Add to Watchlist", new_user_session_path %></tr>
+    <tr><%= link_to "Add To Favorites", new_user_session_path, class: "btn" %></tr>
+    <tr><%= link_to "Add To Watchlist", new_user_session_path, class: "btn" %></tr>
   <% end %>
 </table>
 

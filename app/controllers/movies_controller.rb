@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def index
 
     @movies = Movie.all.sample(4)
-    @most_recent = Movie.order("created_at DESC").limit(3)
+    @most_recent = Movie.order("created_at DESC").limit(5)
     @mr_c_movie = Movie.find_by(title: "The Princess Diaries")
 
   end
