@@ -9,7 +9,7 @@
     <div class="col s1"><p>Runtime: <%=@movie.data(:runtime)%></p></div>
     <div class="col s2"><p>Genre: <%=@movie.data(:genre)%></p></div>
     <div class="col s2"><p>Release Data: <%=@movie.data(:released)%></p></div>
-    <div class="col s1"><i class="small material-icons yellow-text text-darken-3">stars</i> <span><%= @movie.reviews.map{|review| review.ratings}.inject(:+) / @movie.reviews.length%> / 10</span></div>
+    <div class="col s1"><i class="small material-icons yellow-text text-darken-3">stars</i> <span><%= @movie.reviews.map{|review| review.ratings}.inject(:+).to_f / @movie.reviews.length%> / 10</span></div>
 
   </div>
 </div>
@@ -52,14 +52,16 @@
 <table>
   <%if user_signed_in?%>
   <tr><%= button_to "Start a Conversation", new_movie_comment_path(@movie), method: :get %></tr>
-    <tr><%= button_to "Add Movie Review", new_movie_review_path(@movie), method: :get %></tr>
+    <% if !reviewed?(@movie)%>
+      <tr><%= button_to "Add Movie Review", new_movie_review_path(@movie), method: :get %></tr>
+    <% end %>
     <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite", class: "btn" %></tr>
     <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), action: "watchlist" %></tr>
   <% elsif %>
-    <tr><%= button_to "Add Comment", new_user_session_path, class: "btn" %></tr>
-    <tr><%= button_to "Add Movie Review", new_user_session_path, class: "btn" %></tr>
-    <tr><%= button_to "Add to Favorites", new_user_session_path, class: "btn" %></tr>
-    <tr><%= button_to "Add to Watchlist", new_user_session_path, class: "btn" %></tr>
+      <tr><%= button_to "Add Comment", new_user_session_path, class: "btn" %></tr>
+      <tr><%= button_to "Add Movie Review", new_user_session_path, class: "btn" %></tr>
+      <tr><%= button_to "Add to Favorites", new_user_session_path, class: "btn" %></tr>
+      <tr><%= button_to "Add to Watchlist", new_user_session_path, class: "btn" %></tr>
   <% end %>
 </table>
 </div>
