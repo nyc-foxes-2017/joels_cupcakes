@@ -1,0 +1,10 @@
+<div class="movie-container">
+  <table>
+    <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie)%></td>
+    </tr>
+    <%end%>
+  </table>
+
+</div>
