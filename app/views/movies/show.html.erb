@@ -1,13 +1,13 @@
   
 <div class="title-block">
   <div class="row">
-    <div class="col s2 offset-s2"><h4><%=@movie.title%></h4></div>
+    <div class="col s2 offset-s2 right-align"><h4><%=@movie.title%></h4></div>
     
     <div class="col s1"><h4>(<%=@movie.data(:year)%>)</h4></div>
 
   </div>
   <div class="row">
-    <div class="col s1 offset-s2"><p>Rated: <%=@movie.data(:rated)%></p></div>
+    <div class="col s1 offset-s2 right-align"><p>Rated: <%=@movie.data(:rated)%></p></div>
     <div class="col s1"><p>Runtime: <%=@movie.data(:runtime)%></p></div>
     <div class="col s2"><p>Genre: <%=@movie.data(:genre)%></p></div>
     <div class="col s2"><p>Release Data: <%=@movie.data(:released)%></p></div>
