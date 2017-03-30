@@ -1,10 +1,10 @@
-
-
-<div class="movie-show">
-
   <h1><%=@movie.title%></h1>
-  <img src="<%=@movie.data(:poster)%>" style="margin-left:250px;">
-  <h3 style="text-align:center;"><%=@movie.data(:plot)%></h3>
+
+
+<div class="movie-show valign-wrapper">
+
+  <img class="left-align" src="<%=@movie.data(:poster)%>" >
+  <p style="text-align:center;"><%=@movie.data(:plot)%></p>
 </div>
 
 
@@ -12,12 +12,12 @@
 <table>
   <%if user_signed_in?%>
     <tr><%= button_to "Add Movie Review", new_movie_review_path(@movie), method: :get %></tr>
-    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite" %></tr>
+    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite", class: "btn" %></tr>
     <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), action: "watchlist" %></tr>
   <% elsif %>
-    <tr><%= button_to "Add Movie Review", new_user_session_path %></tr>
-    <tr><%= button_to "Add to Favorites", new_user_session_path %></tr>
-    <tr><%= button_to "Add to Watchlist", new_user_session_path %></tr>
+    <tr><%= button_to "Add Movie Review", new_user_session_path, class: "btn" %></tr>
+    <tr><%= button_to "Add to Favorites", new_user_session_path, class: "btn" %></tr>
+    <tr><%= button_to "Add to Watchlist", new_user_session_path, class: "btn" %></tr>
   <% end %>
 </table>
 
