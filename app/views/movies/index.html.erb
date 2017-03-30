@@ -1,13 +1,21 @@
-<h1>Movie Results</h1>
+<h1>Browse Movies</h1>
 
     <div class="movie-container">
-      <table>
+      <table id="sample-movie-view">
         <% @movies.each do |movie| %>
-        <tr>
-          <td><%=movie.title%></td>
-          <td><%= link_to 'Show', movie_path(movie)%></td>
-        </tr>
+          <td class="mr-pic"><img src="<%=movie.data(:poster)%>" width=120 height=160></td>
+          <td class="mr-title"><%= link_to movie.title, movie_path(movie)%></td>
         <%end%>
       </table>
 
     </div>
+
+    <footer>
+      <table id="recently-view">
+        <h3>Recently viewed</h3>
+        <%@most_recent.each do |movie| %>
+        <td class="mr-pic"><img src="<%=movie.data(:poster)%>" width=100 height=120></td>
+        <td><%= link_to movie.title, movie_path(movie)%></td>
+        <%end%>
+      </table>
+    </footer>
