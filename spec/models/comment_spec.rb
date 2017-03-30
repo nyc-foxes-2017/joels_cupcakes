@@ -21,6 +21,11 @@ RSpec.describe Comment, type: :model do
         expect(@comment.comments).to match_array [@comment_on_comment]
       end
 
+      it 'deletes replied comments when comment is deleted' do
+
+        expect{@comment.destroy}.to change {Comment.count}
+      end
+
 
 
 end
