@@ -7,6 +7,21 @@ RSpec.describe User, type: :model do
   # let(:comment) {user.comments.create!(content:"You're wrong!",commentable_type:"Movie", commentable_id:movie.id)}
   # let(:fav_movie) {user.favorite_movies.create!(movie_id:movie.id)}
   # let(:watchlist_movie) {user.watchlists.create!(movie_id:movie.id)}
+  describe 'validations' do
+    let (:user_without_username) {User.new(username:"",email:"betty@email.com", password:"password")}
+    let (:user_with_username) {User.new(username:"betty",email:"betty@email.com", password:"password")}
+
+    it "is not valid when username is blank" do
+      user_without_username.valid?
+      expect(user_without_username.errors[:username]).to_not be_empty
+    end
+
+    it "is  valid with username" do
+      user_without_username.valid?
+      expect(user_with_username.errors[:username]).to be_empty
+    end
+
+  end
 
   describe 'associations' do
     before(:each) do
