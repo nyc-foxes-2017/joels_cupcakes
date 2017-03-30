@@ -1,16 +1,15 @@
 
 <%= form_for :review, url: movie_reviews_path(@movie), method: :post do |f| %>
-  <p>
+  <div>
     <%= f.label :content %><br>
     <%= f.text_field :content %>
-  </p>
+  </div>
 
-  <p>
+  <div class="input-field">
     <%= f.label :ratings %><br>
     <%= f.select :ratings, ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] %>
-  </p>
-
-  <p>
+  </div>
+  <div>
     <%= f.submit %>
-  </p>
-<% end %>
+  </div>
+  <% end %>
