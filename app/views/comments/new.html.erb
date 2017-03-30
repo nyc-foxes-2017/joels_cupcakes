@@ -1,0 +1,11 @@
+
+<%= form_for :comment, url: movie_comments_path(@movie), method: :post do |f| %>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -7,10 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Movie.destroy_all
 url = "http://www.omdbapi.com/?t="
-movies = ["star wars", "jumanji", "logan", "power rangers", "good will hunting", "the lion king", "star trek"]
+
+movies = ["the princess diaries", "jumanji", "logan", "power rangers", "good will hunting", "the lion king", "star trek", "rogue one"]
+
+
 movies.each do |movie|
   adjusted_string = movie.split(" ").join("+")
   movie = JSON.parse open(url + adjusted_string).read
-  Movie.create!( { title: movie["Title"] } )
+  Movie.create!( { title: movie["Title"], imdbID: movie["imdbID"] } )
 end
 # users = User.create!([{email: "test@test.com", username: "Test" , password:"password"}])
