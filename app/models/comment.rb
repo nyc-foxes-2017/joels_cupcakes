@@ -3,6 +3,6 @@ class Comment < ApplicationRecord
   has_many  :comments, as: :commentable
   belongs_to :user
 
-  include PublicActivity: :Model
+  include PublicActivity::Model
   tracked
 end

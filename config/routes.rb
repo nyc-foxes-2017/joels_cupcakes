@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'activities/index'
+
   get '/search', :to => 'movies#search'
 
   post '/movies/:id/favorite', :to => 'movies#favorite'
@@ -14,5 +16,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :reviews
   end
+
+  resources :activities
 
 end
