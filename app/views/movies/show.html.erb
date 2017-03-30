@@ -1,7 +1,23 @@
 
+
 <div class="movie-show">
 
   <h1><%=@movie.title%></h1>
   <img src="<%=@movie.data(:poster)%>" style="margin-left:250px;">
   <h3 style="text-align:center;"><%=@movie.data(:plot)%></h3>
 </div>
+
+
+<br>
+<table>
+  <%if user_signed_in?%>
+    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite" %></tr>
+    <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), action: "watchlist" %></tr>
+  <% elsif %>
+    <tr><%= button_to "Add to Favorites", new_user_session_path %></tr>
+    <tr><%= button_to "Add to Watchlist", new_user_session_path %></tr>
+  <% end %>
+</table>
+
+
+
