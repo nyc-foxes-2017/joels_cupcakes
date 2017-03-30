@@ -11,10 +11,17 @@ class Movie < ApplicationRecord
   end
 
   def data(type)
-    url = "http://www.omdbapi.com/?t="
-    title = self[:title].split(" ").join("+")
+    url = "http://www.omdbapi.com/?i="
+    title = self[:imdbID].split(" ").join("+")
     type = type.to_s.capitalize
     (JSON.parse open(url + title + "&plot=full").read)[type]
+  end
+
+  def imdbdata(type)
+    url = "http://www.omdbapi.com/?i="
+    title = self[:imdbID]
+    type = type.to_s
+    (JSON.parse open(url + title).read)[type]
   end
 
 end

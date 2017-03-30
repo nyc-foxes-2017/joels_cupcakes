@@ -1,24 +1,32 @@
   
 <div class="title-block">
   <div class="row">
-    <div class="col s2 right-align"><h4><%=@movie.title%></h4></div>
-    <div class="col s1"><h4>(<%=@movie.data(:year)%>)</h4></div>
+    <div class="col s4 center-align"><h3><%=@movie.title%></h3></div>
   </div>
   <div class="row">
     <div class="col s1 offset-s1 right-align"><p>Rated: <%=@movie.data(:rated)%></p></div>
     <div class="col s1"><p>Runtime: <%=@movie.data(:runtime)%></p></div>
     <div class="col s2"><p>Genre: <%=@movie.data(:genre)%></p></div>
     <div class="col s2"><p>Release Data: <%=@movie.data(:released)%></p></div>
-    <div class="col s1"><i class="small material-icons yellow-text text-darken-3">stars</i> <span><%= @movie.reviews.map{|review| review.ratings}.inject(:+).to_f / @movie.reviews.length%> / 10</span></div>
+    <div class="col s2"><i class="small material-icons yellow-text text-darken-3">stars</i> <span><%= @movie.imdbdata(:imdbRating)%>/ 10</span><span> (<%= @movie.imdbdata(:imdbVotes)%> Votes)</span></div>
 
   </div>
 </div>
 
 
-<div class="movie-show valign-wrapper">
+<div class="movie-show row">
+  <div class="col s4 right-align"><img class="" src="<%=@movie.data(:poster)%>"></div>
+  <div class="col s3"><p class=""><%=@movie.data(:plot)%></p></div>
+  <div class="col s3">
+    <p>Director: <%=@movie.data(:director)%></p>
+    <p>Writers: <%=@movie.data(:writer)%></p>
+    <p>Cast: <%=@movie.data(:actors)%></p>
+    <p>Production: <%=@movie.data(:production)%></p>
+    <p>Metascore: <%=@movie.data(:metascore)%></p>
+  </div>
 
-  <img class="left-align" src="<%=@movie.data(:poster)%>" >
-  <p style="text-align:center;"><%=@movie.data(:plot)%></p>
+  
+  
 </div>
 <div class="center-align row">
   <div class="col s1"></div>
