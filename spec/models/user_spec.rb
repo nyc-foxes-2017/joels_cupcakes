@@ -10,15 +10,17 @@ RSpec.describe User, type: :model do
   describe 'validations' do
     let (:user_without_username) {User.new(username:"",email:"betty@email.com", password:"password")}
     let (:user_with_username) {User.new(username:"betty",email:"betty@email.com", password:"password")}
+
     it "is not valid when username is blank" do
       user_without_username.valid?
       expect(user_without_username.errors[:username]).to_not be_empty
     end
 
-    it "is  valid wwith username" do
+    it "is  valid with username" do
       user_without_username.valid?
       expect(user_with_username.errors[:username]).to be_empty
     end
+
   end
 
   describe 'associations' do
