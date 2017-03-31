@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   end
 
   def show
+      
+
+    @activities = PublicActivity::Activity.all.order("created_at desc").limit(5)
+    @movies_to_watch = current_user.movies_to_watch.all
+    @favorites = current_user.favorites.all
     if find_user
       find_user
     else

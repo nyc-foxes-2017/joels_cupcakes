@@ -1,7 +1,7 @@
-class ActivitiesController < ApplicationController
-  def index
+# class ActivitiesController < ApplicationController
+#   def index
 
-    @activities = PublicActivity::Activity.all
+#     @activities = PublicActivity::Activity.all
 
-  end
-end
+#   end
+# end
