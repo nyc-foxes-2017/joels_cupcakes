@@ -1,0 +1,44 @@
+
+    <div class="movie-container">
+      <table id="sample-movie-view">
+        <tr>
+          <% @movies.each do |movie| %>
+            <td style="text-align:center;"><img src="<%=movie.data(:poster)%>" width=180 height=230></td>
+          <%end%>
+        <tr>
+            <% @movies.each do |movie| %>
+            <td style="text-align:center;"><%= link_to movie.title, movie_path(movie)%></td>
+            <%end%>
+        </tr>
+
+      </tr>
+      <h4 class="center-align" style="color:#1182f4 ">Browse Movies</h4>
+    </table>
+  </div>
+    <br>
+    <div id="mr_c_fave">
+      <h4 style="font-family:verdana; color:#1182f4;">Mr. McClintock's favorite movie:</h4>
+      <%= link_to @mr_c_movie.title, movie_path(@mr_c_movie)%></td>
+      <br>
+      <br>
+      <p><%=@mr_c_movie.data(:plot)%></p>
+
+    </div>
+
+    <footer>
+      <table id="recentlyview">
+        <h3>Recently viewed</h3>
+        <tr>
+        <%@most_recent.each do |movie| %>
+          <td style="text-align:center;"><%= link_to movie.title, movie_path(movie)%></td>
+        <%end%>
+        <tr>
+          <%@most_recent.each do |movie| %>
+            <td style="text-align:center;"><img src="<%=movie.data(:poster)%>" width=120 height=160></td>
+          <%end%>
+        </tr>
+
+
+        </tr>
+      </table>
+    </footer>

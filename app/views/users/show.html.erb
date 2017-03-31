@@ -1,0 +1,54 @@
+<h2><%= current_user.username %></h2>
+
+
+
+<div class = "users-movies">
+	
+
+<table id="watchlist">
+        <h3>Watchlist</h3>
+        <tr>
+        <%@movies_to_watch.each do |movie| %>
+          <td style="text-align:center;"><%= link_to movie.title, movie_path(movie)%></td>
+        <%end%>
+        <tr>
+          <%@movies_to_watch.each do |movie| %>
+            <td style="text-align:center;"><img src="<%=movie.data(:poster)%>" width=120 height=160></td>
+          <%end%>
+        </tr>
+
+
+        </tr>
+      </table>
+
+<table id="favorites">
+        <h3>Favorites</h3>
+        <tr>
+        <%@favorites.each do |movie| %>
+          <td style="text-align:center;"><%= link_to movie.title, movie_path(movie)%></td>
+        <%end%>
+        <tr>
+          <%@favorites.each do |movie| %>
+            <td style="text-align:center;"><img src="<%=movie.data(:poster)%>" width=120 height=160></td>
+          <%end%>
+        </tr>
+
+
+        </tr>
+      </table>
+</div>
+
+<table class = "activity-log">
+
+<% @activities.each do |activity| %>
+<tr>
+	<td class="time"><%= time_ago_in_words(activity.created_at) %> ago</td>
+	</tr>
+  <tr>
+  <td><%= current_user.username%> <%=trackable_words(activity)%> </td>
+  </tr>
+
+<%end %>
+
+</ul>
+

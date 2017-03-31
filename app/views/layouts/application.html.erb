@@ -6,9 +6,38 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <body>
+    <nav>
+      <div class="nav-wrapper blue row">
+
+          <div class="input-field right col s4">
+          <%= form_tag("/search", method: "get") do %>
+            <%= search_field_tag :search, params[:search], id: "search", class: "blue white-text" %>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          <% end %>
+          </div>
+
+          <div>
+            <ul>
+              <li><%= link_to "Home", root_path %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Profile", user_path(current_user) %></li>
+                <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+              <% else %>
+                <li><%= link_to "Log In", new_user_session_path %></li>
+                <li><%= link_to "Register", new_user_registration_path %></li>
+              <%end%>
+            </ul>
+          </div>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>

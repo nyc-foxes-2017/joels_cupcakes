@@ -1,0 +1,19 @@
+<div class="search-page">
+
+  <table>
+    <h3>Search Results:</h3>
+    <tr>
+    <%@movies.each do |movie| %>
+      <td><%= link_to movie.title, movie_path(movie)%></td>
+    <%end%>
+    <tr>
+      <%@movies.each do |movie| %>
+        <td class="mr-pic"><img src="<%=movie.data(:poster)%>" width=220 height=260></td>
+      <%end%>
+    </tr>
+
+
+    </tr>
+  </table>
+
+</div>
