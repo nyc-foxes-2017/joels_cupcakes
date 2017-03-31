@@ -11,6 +11,23 @@
     <div class="col s2"><i class="small material-icons yellow-text text-darken-3">stars</i> <span><%= @movie.imdbdata(:imdbRating)%>/ 10</span><span> (<%= @movie.imdbdata(:imdbVotes)%> Votes)</span></div>
 
   </div>
+  <div class="center-align">
+<table>
+  <%if user_signed_in?%>
+  <tr><%= link_to '<i class="material-icons right">chat_bubble_outline</i> Start a Conversation'.html_safe, new_movie_comment_path(@movie), class: "btn blue waves-effect waves-light" %></tr>
+    <% if !reviewed?(@movie)%>
+      <tr><%= link_to '<i class="material-icons right">library_add</i> Add a Movie Review'.html_safe, new_movie_review_path(@movie), class: "btn blue waves-effect waves-light" %></tr>
+    <% end %>
+    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), {action: "favorite"}, {class: "btn blue waves-light" }%></tr>
+    <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), {action: "watchlist"}, {class: "btn blue waves-light"} %></tr>
+  <% elsif %>
+      <tr><%= button_to "Add Comment", new_user_session_path, class: "btn blue" %></tr>
+      <tr><%= button_to "Add Movie Review", new_user_session_path, class: "btn blue" %></tr>
+      <tr><%= button_to "Add to Favorites", new_user_session_path, class: "btn blue" %></tr>
+      <tr><%= button_to "Add to Watchlist", new_user_session_path, class: "btn blue" %></tr>
+  <% end %>
+</table>
+</div>
 </div>
 
 
@@ -36,7 +53,7 @@
     <ul class="card-panel">
       <li>
       <% review.ratings.to_i.times do %>
-        <i class=" material-icons yellow-text text-darken-2">stars</i>
+        <i class="material-icons yellow-text text-darken-2">stars</i>
       <% end %>
       </li>
       <li><%=review.content%></li>
@@ -56,20 +73,4 @@
 </div>
 
 <br>
-<div class="center-align">
-<table>
-  <%if user_signed_in?%>
-  <tr><%= button_to "Start a Conversation", new_movie_comment_path(@movie), method: :get %></tr>
-    <% if !reviewed?(@movie)%>
-      <tr><%= button_to "Add Movie Review", new_movie_review_path(@movie), method: :get %></tr>
-    <% end %>
-    <tr><%= button_to (check_favorite(@movie) ? "Remove from Favorites" : "Add to Favorites"), action: "favorite", class: "btn" %></tr>
-    <tr><%= button_to (check_watchlist(@movie) ? "Remove from Watchlist" : "Add to Watchlist"), action: "watchlist" %></tr>
-  <% elsif %>
-      <tr><%= button_to "Add Comment", new_user_session_path, class: "btn" %></tr>
-      <tr><%= button_to "Add Movie Review", new_user_session_path, class: "btn" %></tr>
-      <tr><%= button_to "Add to Favorites", new_user_session_path, class: "btn" %></tr>
-      <tr><%= button_to "Add to Watchlist", new_user_session_path, class: "btn" %></tr>
-  <% end %>
-</table>
-</div>
+
